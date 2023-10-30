@@ -7,8 +7,8 @@ import ru.kata.spring.security.services.RoleService;
 import ru.kata.spring.security.services.UserService;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class InitApp {
@@ -24,8 +24,8 @@ public class InitApp {
     private void defaultAdminAndUser() {
         Role defaultAdmin = new Role("ROLE_ADMIN");
         Role defaultUser = new Role("ROLE_USER");
-        Collection<Role> rolesAdmin = new LinkedList<>();
-        Collection<Role> rolesUser = new LinkedList<>();
+        Set<Role> rolesAdmin = new HashSet<>();
+        Set<Role> rolesUser = new HashSet<>();
         rolesAdmin.add(defaultAdmin);
         rolesUser.add(defaultUser);
         User admin = new User("Admin", "Admin", 38, "test@mail.ru",
