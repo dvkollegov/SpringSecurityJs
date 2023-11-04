@@ -27,10 +27,11 @@ public class InitApp {
         Set<Role> rolesAdmin = new HashSet<>();
         Set<Role> rolesUser = new HashSet<>();
         rolesAdmin.add(defaultAdmin);
+        rolesAdmin.add(defaultUser);
         rolesUser.add(defaultUser);
-        User admin = new User("Admin", "Admin", 38, "test@mail.ru",
+        User admin = new User("Admin", "Admin", 38, "admin@mail.ru",
                 "pass", rolesAdmin);
-        User user = new User("User", "User", 38, "test@ya.ru",
+        User user = new User("User", "User", 38, "user@mail.ru",
                 "pass", rolesUser);
         roleService.save(defaultAdmin);
         roleService.save(defaultUser);

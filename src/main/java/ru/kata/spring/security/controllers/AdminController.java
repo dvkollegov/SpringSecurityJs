@@ -8,6 +8,8 @@ import ru.kata.spring.security.models.User;
 import ru.kata.spring.security.services.RoleService;
 import ru.kata.spring.security.services.UserService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -21,34 +23,19 @@ public class AdminController {
     }
 
     @GetMapping
-    public String showAllUser(Model model) {
+    public String showAllUser(Principal principal, Model model) {
+        User user = userService.getUserByEmail(principal.getName());
+        model.addAttribute("admin", userService.getUser(user.getId()));
         model.addAttribute("users", userService.getAllUsers());
-        return "admin";
-    }
-
-    @GetMapping("/user")
-    public String showUser(@RequestParam(value = "id") long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        return "user";
-    }
-
-    @GetMapping("/new")
-    public String newUser(@ModelAttribute("user")User user, Model model){
+        model.addAttribute("newUser", new User());
         model.addAttribute("allRoles", roleService.getAllRoles());
-        return "new";
+        return "admin";
     }
 
     @PostMapping
     public String createUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/admin";
-    }
-
-    @GetMapping("/edit")
-    public String editUser(@RequestParam(value = "id") long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        model.addAttribute("allRoles", roleService.getAllRoles());
-        return "edit";
     }
 
     @PatchMapping("/update")
