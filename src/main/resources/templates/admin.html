@@ -32,22 +32,22 @@
 
     <div class="d-flex align-items-start">
         <div class="col-2">
-            <div class="nav flex-column nav-pills me-3 p-0" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button class="nav-link active" id="v-pills-admin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-admin"
-                        type="button" role="tab" aria-controls="v-pills-admin" aria-selected="true"
+            <div class="nav flex-column nav-pills me-3 p-0" id="pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="admin-tab" data-bs-toggle="pill" data-bs-target="#pills-admin"
+                        type="button" role="tab" aria-controls="pills-admin" aria-selected="true"
                         style="text-align: left">Admin
                 </button>
-                <button class="nav-link" id="v-pills-user-tab" data-bs-toggle="pill" data-bs-target="#v-pills-user"
-                        type="button" role="tab" aria-controls="v-pills-user" aria-selected="true" style="text-align: left">
+                <button class="nav-link" id="user-tab" data-bs-toggle="pill" data-bs-target="#pills-user"
+                        type="button" role="tab" aria-controls="pills-user" aria-selected="true" style="text-align: left">
                     User
                 </button>
             </div>
         </div>
         <div class="container-fluid" style="background-color: #d7d7f8">
             <div class="col-10 p-0">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-admin" role="tabpanel"
-                         aria-labelledby="v-pills-admin-tab">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-admin" role="tabpanel"
+                         aria-labelledby="admin-tab">
                         <p class="fw-bold fs-1">Admin panel</p>
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -252,36 +252,27 @@
                                     <form th:method="POST" th:action="@{/admin}" th:object="${newUser}">
                                         <div>
                                             <label for="firstName" class="form-label fw-bold">First name</label>
-                                            <input type="text" class="form-control" id="firstName"
-                                                   th:field="*{firstName}"
-                                                   required>
+                                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
                                         </div>
                                         <div>
                                             <label for="lastname" class="form-label fw-bold">Last name</label>
-                                            <input type="text" class="form-control" id="lastname"
-                                                   th:field="*{lastName}"
-                                                   required>
+                                            <input type="text" class="form-control" id="lastname" th:field="*{lastName}" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="age" class="form-label fw-bold">Age</label>
-                                            <input type="number" class="form-control" id="age" th:field="*{age}"
-                                                   value="0"
-                                                   min="0" required>
+                                            <input type="number" class="form-control" id="age" th:field="*{age}" value="0" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label fw-bold">Email</label>
-                                            <input type="email" class="form-control" id="email" th:field="*{email}"
-                                                   placeholder="Email"
-                                                   required>
+                                            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="password" class="form-label fw-bold">Password</label>
-                                            <input type="password" class="form-control" id="password"
-                                                   th:field="*{password}" placeholder="Password" required>
+                                            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="roleList" class="form-label fw-bold">Role</label>
-                                            <select multiple class="form-select" id="roleList" th:field="*{roles}">
+                                            <label for="roles" class="form-label fw-bold">Role</label>
+                                            <select multiple class="form-select" id="roles" th:field="*{roles}">
                                                 <option th:each="role : ${allRoles}"
                                                         th:value="${role.id}"
                                                         th:text="${role.name.substring(5, role.name.length())}">
@@ -296,15 +287,15 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                    <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
                         <p class="fw-bold fs-4">User information-page</p>
                         <p class="fw-bold fs-5">About user</p>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Username</th>
-                                <th>Surname</th>
+                                <th>First name</th>
+                                <th>Last name</th>
                                 <th>Age</th>
                                 <th>Email</th>
                                 <th>Role</th>
