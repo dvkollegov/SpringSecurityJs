@@ -12,6 +12,7 @@ import ru.kata.spring.security.repositories.UserRepository;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -49,12 +50,12 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public User getUser(long id) {
+    public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 

@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class AppRestController {
+public class UsersRestController {
     private final UserService userService;
     private final RoleService roleService;
 
     @Autowired
-    public AppRestController(UserService userService, RoleService roleService) {
+    public UsersRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -30,7 +30,7 @@ public class AppRestController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> showUser(@PathVariable("id") long id) {
+    public ResponseEntity<User> showUser(@PathVariable("id") Long id) {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
@@ -47,7 +47,7 @@ public class AppRestController {
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
